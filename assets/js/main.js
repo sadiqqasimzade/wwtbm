@@ -132,18 +132,13 @@ function generate() {
     answerbtns[1].innerHTML=choices[1]
     answerbtns[2].innerHTML=choices[2]
     answerbtns[3].innerHTML=choices[3]
-
-  // if(answerbtns[getRandomInt(answerbtns.innerHTML)])
-  // answerbtns[0].innerHTML = `${country.name.common}`;
-  // answerbtns[1].innerHTML = `${countries[ri + 1].name.common}`;
-  // answerbtns[2].innerHTML = `${countries[ri + 2].name.common}`;
-  // answerbtns[3].innerHTML = `${countries[ri + 3].name.common}`;
 } catch (error) { }
 }
 
 function getRandomInt(max) {
   return Math.floor(Math.random() * max);
 }
+
 try {
   saveeddata = JSON.parse(localStorage.getItem("saveeddata"));
   if (saveeddata != null) {
@@ -156,7 +151,6 @@ try {
       maincontainer.classList.remove("d-none")
       generate();
       startinterval()
-      nextbtn.classList.remove("disabled")
     }
   }
 } catch (error) { }
