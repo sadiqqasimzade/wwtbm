@@ -7,16 +7,25 @@ var correct;
 var rightanswers = 0;
 var currentquestion = 1;
 
+var nextbtn=document.getElementById("nextbtn")
 answerbtns = $("#btncontainer").find("button");
 
-try {
-  saveeddata = JSON.parse(localStorage.getItem("saveeddata"));
-  if (saveeddata != null) {
-    if (saveeddata.totalsec != 0) {
-      alert("restore");
+function startinterval(){
+  timerId = setInterval(() => {
+    if (totalsec < 2) {
+      Swal.fire("No Time Left");
+      notimeleft();
     }
-  }
-} catch (error) {}
+    totalsec--;
+    ptimeleft.innerHTML = `Time-Left:${totalsec}`;
+    localStorage.setItem("saveeddata", JSON.stringify({
+      totalsec,
+      quizcount,
+      rightanswers,
+      currentquestion,
+    }));
+  }, 1000);
+}
 
 $("#btncontainer")
   .find("button")
@@ -35,6 +44,9 @@ fetch("https://restcountries.com/v3.1/all")
   .then((data) => {
     countries = data;
   });
+
+
+
 
 function resetbtns() {
   $("#btncontainer")
@@ -57,20 +69,7 @@ document.getElementById("startbtn").addEventListener("click", () => {
     maincontainer.classList.remove("d-none");
     settings.classList.add("d-none");
     generate();
-    timerId = setInterval(() => {
-      if (totalsec < 2) {
-        Swal.fire("No Time Left");
-        notimeleft();
-      }
-      totalsec--;
-      ptimeleft.innerHTML = `Time-Left:${totalsec}`;
-      localStorage.setItem("saveeddata", JSON.stringify({
-        totalsec,
-        quizcount,
-        rightanswers,
-        currentquestion,
-      }));
-    }, 1000);
+    startinterval()
   } else
     Swal.fire({
       icon: "error",
@@ -83,6 +82,7 @@ function notimeleft() {
   maincontainer.classList.add("d-none");
   scorediv.classList.remove("d-none");
   score.innerHTML = `result:${rightanswers}/${quizcount}`;
+  localStorage.removeItem("saveeddata")
   clearInterval(timerId);
 }
 
@@ -123,9 +123,25 @@ function generate() {
     answerbtns[1].innerHTML = `${countries[ri + 1].name.common}`;
     answerbtns[2].innerHTML = `${countries[ri + 2].name.common}`;
     answerbtns[3].innerHTML = `${countries[ri + 3].name.common}`;
-  } catch (error) {}
+  } catch (error) { }
 }
 
 function getRandomInt(max) {
   return Math.floor(Math.random() * max);
 }
+try {
+  saveeddata = JSON.parse(localStorage.getItem("saveeddata"));
+  if (saveeddata != null) {
+    if (saveeddata.totalsec != 0 && saveeddata.currentquestion <= saveeddata.quizcount) {
+      totalsec = saveeddata.totalsec
+      quizcount = saveeddata.quizcount;
+      rightanswers = saveeddata.rightanswers
+      currentquestion = saveeddata.currentquestion
+      settings.classList.add("d-none")
+      maincontainer.classList.remove("d-none")
+      generate();
+      startinterval()
+      nextbtn.classList.remove("disabled")
+    }
+  }
+} catch (error) { }
