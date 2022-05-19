@@ -7,10 +7,10 @@ var correct;
 var rightanswers = 0;
 var currentquestion = 1;
 
-var nextbtn=document.getElementById("nextbtn")
+var nextbtn = document.getElementById("nextbtn")
 answerbtns = $("#btncontainer").find("button");
 
-function startinterval(){
+function startinterval() {
   timerId = setInterval(() => {
     if (totalsec < 2) {
       Swal.fire("No Time Left");
@@ -53,6 +53,7 @@ function resetbtns() {
     .find("button")
     .removeClass("btn-danger btn-success disabled");
   $("#btncontainer").find("button").addClass("btn-light");
+  $("#btncontainer").find("button").html("")
 }
 function disablebtns() {
   $("#btncontainer").find("button").addClass("disabled");
@@ -119,11 +120,25 @@ function generate() {
     country = countries[ri];
     imgdiv.innerHTML = `<img style="width:40vh" src="${country.flags.svg}" alt=""></img>`;
     correct = `${country.name.common}`;
-    answerbtns[0].innerHTML = `${country.name.common}`;
-    answerbtns[1].innerHTML = `${countries[ri + 1].name.common}`;
-    answerbtns[2].innerHTML = `${countries[ri + 2].name.common}`;
-    answerbtns[3].innerHTML = `${countries[ri + 3].name.common}`;
-  } catch (error) { }
+    choices = [country.name.common,
+    countries[getRandomInt(countries.length)].name.common,
+    countries[getRandomInt(countries.length)].name.common,
+    countries[getRandomInt(countries.length)].name.common
+    ]
+
+    choices.sort();
+
+    answerbtns[0].innerHTML=choices[0]
+    answerbtns[1].innerHTML=choices[1]
+    answerbtns[2].innerHTML=choices[2]
+    answerbtns[3].innerHTML=choices[3]
+
+  // if(answerbtns[getRandomInt(answerbtns.innerHTML)])
+  // answerbtns[0].innerHTML = `${country.name.common}`;
+  // answerbtns[1].innerHTML = `${countries[ri + 1].name.common}`;
+  // answerbtns[2].innerHTML = `${countries[ri + 2].name.common}`;
+  // answerbtns[3].innerHTML = `${countries[ri + 3].name.common}`;
+} catch (error) { }
 }
 
 function getRandomInt(max) {
