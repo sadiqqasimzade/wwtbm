@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- CSS only -->
+
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
+
+    <script src="./assets/js/sweetalert2.all.js"></script>
+    <!-- JavaScript Bundle with Popper -->
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+
+<body>
+    <section class="container mt-5 d-none" id="maincontainer">
+        <div class="d-flex justify-content-center gap-3">
+            <p class="fs-3 text-center w-30" id="ptimeleft"></p>
+            <p class="fs-3 text-center w-30" id="pcurrentquestion"></p>
+        </div>
+    
+        <div class="d-flex justify-content-center mt-5" id="imgdiv">
+
+        </div>
+        <div class="container" id="btncontainer">
+            <div class="d-flex justify-content-around mt-5">
+                <button type="button" class="btn btn-light w-30">Left</button>
+                <button type="button" class="btn btn-light w-30">Left</button>
+            </div>
+            <div class="d-flex justify-content-around mt-5">
+                <button type="button" class="btn btn-light w-30">Left</button>
+                <button type="button" class="btn btn-light   w-30 ">Left</button>
+            </div>
+        </div>
+        <div class="container mt-5 d-flex justify-content-center">
+            <button id="nextbtn" type="button" class="btn btn-light w-30">Next</button>
+        </div>
+    </section>
+
+    <div class="container mt-5 d-flex justify-content-center gap-3" id="settings">
+        <input type="number" placeholder="question number" min="0" id="qninput">
+        <input type="number" placeholder="seconds per question" min="0" id="spqinput">
+        <button id="startbtn" class="btn btn-warning">start</button>
+    </div>
+
+    <div class="container mt-5 d-flex justify-content-center gap-5 d-none" id="scorediv">
+        <p class="fs-3 text-center"  id="score"></p>
+        <button class="btn btn-danger w-30" id="resetbtn">reset</button>
+    </div>
+    <script src="./assets/js/main.js"></script>
+</body>
+
+</html>

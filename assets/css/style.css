@@ -1,0 +1,9 @@
+*{
+    margin: 0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+.w-30{
+    width: 30% !important;
+}
